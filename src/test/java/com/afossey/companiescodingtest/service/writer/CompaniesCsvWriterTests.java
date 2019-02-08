@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest.writer;
+package com.afossey.companiescodingtest.service.writer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

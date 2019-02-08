@@ -1,14 +1,16 @@
-package com.afossey.companiescodingtest;
+package com.afossey.companiescodingtest.service;
 
-import static com.afossey.companiescodingtest.LogMessages.CSV_GENERATED;
-import static com.afossey.companiescodingtest.LogMessages.REPORT_LOG;
-import static com.afossey.companiescodingtest.LogMessages.UNABLE_TO_PARSE_DOMAIN;
-import static com.afossey.companiescodingtest.LogMessages.UNABLE_TO_PARSE_FUNDING;
+import static com.afossey.companiescodingtest.api.LogMessages.CSV_GENERATED;
+import static com.afossey.companiescodingtest.api.LogMessages.REPORT_LOG;
+import static com.afossey.companiescodingtest.api.LogMessages.UNABLE_TO_PARSE_DOMAIN;
+import static com.afossey.companiescodingtest.api.LogMessages.UNABLE_TO_PARSE_FUNDING;
 
-import com.afossey.companiescodingtest.ipstack.IpStackClient;
-import com.afossey.companiescodingtest.parser.CompaniesJsonParser;
-import com.afossey.companiescodingtest.writer.CompaniesCsvWriter;
-import com.afossey.companiescodingtest.writer.CompaniesCsvWriterProperties;
+import com.afossey.companiescodingtest.api.CompanyFields;
+import com.afossey.companiescodingtest.api.CountryReport;
+import com.afossey.companiescodingtest.api.FileParser;
+import com.afossey.companiescodingtest.api.FileWriter;
+import com.afossey.companiescodingtest.service.ipstack.IpStackClient;
+import com.afossey.companiescodingtest.service.writer.CompaniesCsvWriterProperties;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
 import java.net.URI;
@@ -24,13 +26,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CompaniesService {
 
-  private final CompaniesJsonParser parser;
-  private final CompaniesCsvWriter writer;
+  private final FileParser<ObjectNode> parser;
+  private final FileWriter<ObjectNode> writer;
   private final CompaniesCsvWriterProperties writerProps;
   private final IpStackClient client;
 
   /**
-   * Process each company from a file as asked by the coding test
+   * Process each company from a file as specified by the coding test
+   * @param file
+   * @param withIpStack enable IpStack call
    */
   public void printReport(File file, Boolean withIpStack) {
     final SortedMap<String, CountryReport> report = new TreeMap<>();

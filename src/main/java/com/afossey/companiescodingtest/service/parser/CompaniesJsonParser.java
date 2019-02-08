@@ -1,5 +1,6 @@
-package com.afossey.companiescodingtest.parser;
+package com.afossey.companiescodingtest.service.parser;
 
+import com.afossey.companiescodingtest.api.FileParser;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class CompaniesJsonParser {
+public class CompaniesJsonParser implements FileParser<ObjectNode> {
 
   private static final ObjectMapper objectMapper;
 
@@ -31,6 +32,7 @@ public class CompaniesJsonParser {
    *
    * @return {@link Flowable} of {@link ObjectNode}
    */
+  @Override
   public Flowable<ObjectNode> parse(File file) {
     return Flowable.generate(() -> parser(file), this::getNextOrComplete, JsonParser::close);
   }

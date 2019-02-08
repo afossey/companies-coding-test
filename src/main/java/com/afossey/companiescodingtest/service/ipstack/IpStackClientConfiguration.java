@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest.ipstack;
+package com.afossey.companiescodingtest.service.ipstack;
 
 import feign.Feign;
 import feign.RequestInterceptor;

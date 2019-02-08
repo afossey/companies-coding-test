@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest;
+package com.afossey.companiescodingtest.api;
 
 public enum LogMessages {
 

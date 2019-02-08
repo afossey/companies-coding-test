@@ -1,11 +1,12 @@
-package com.afossey.companiescodingtest.writer;
+package com.afossey.companiescodingtest.service.writer;
 
-import static com.afossey.companiescodingtest.LogMessages.A_COMPANY_MUST_HAVE_A_NAME;
-import static com.afossey.companiescodingtest.LogMessages.INVALID_FIRST_CHAR;
-import static com.afossey.companiescodingtest.LogMessages.NEW_FIELD_ENCOUNTERED;
+import static com.afossey.companiescodingtest.api.LogMessages.A_COMPANY_MUST_HAVE_A_NAME;
+import static com.afossey.companiescodingtest.api.LogMessages.INVALID_FIRST_CHAR;
+import static com.afossey.companiescodingtest.api.LogMessages.NEW_FIELD_ENCOUNTERED;
 import static java.util.stream.Collectors.joining;
 
-import com.afossey.companiescodingtest.CompanyFields;
+import com.afossey.companiescodingtest.api.CompanyFields;
+import com.afossey.companiescodingtest.api.FileWriter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
@@ -28,7 +29,7 @@ import org.springframework.util.StringUtils;
 
 @Slf4j
 @Component
-public class CompaniesCsvWriter {
+public class CompaniesCsvWriter implements FileWriter<ObjectNode> {
 
   private static final String CSV_SEP_STR = ";";
   private static final String NEW_LINE_STR = "\n";
@@ -61,6 +62,7 @@ public class CompaniesCsvWriter {
    * If not existing, create the file, write the csv header and append the company row.
    * If existing, retrieve the file handle, append the company row.
    */
+  @Override
   public void write(ObjectNode node) throws IOException {
 
     Character firstLetter = getCompanyNameFirstChar(node).orElse(null);

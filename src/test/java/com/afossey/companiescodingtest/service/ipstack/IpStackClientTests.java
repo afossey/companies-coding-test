@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest.ipstack;
+package com.afossey.companiescodingtest.service.ipstack;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

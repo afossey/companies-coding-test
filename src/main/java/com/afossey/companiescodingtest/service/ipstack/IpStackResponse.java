@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest.ipstack;
+package com.afossey.companiescodingtest.service.ipstack;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

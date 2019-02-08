@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest;
+package com.afossey.companiescodingtest.service;
 
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,5 +1,6 @@
-package com.afossey.companiescodingtest.parser;
+package com.afossey.companiescodingtest.service.parser;
 
+import com.afossey.companiescodingtest.api.FileParser;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.reactivex.subscribers.TestSubscriber;
 import java.io.File;
@@ -13,18 +14,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class CompaniesJsonParserTests {
 
-  private CompaniesJsonParser companiesParser;
+  private FileParser<ObjectNode> parser;
 
   @Before
   public void init() {
-    this.companiesParser = new CompaniesJsonParser();
+    this.parser = new CompaniesJsonParser();
   }
 
   @Test
   public void it_should_parse_companies_from_light_file() throws IOException {
     TestSubscriber<ObjectNode> subscriber = new TestSubscriber<>();
     File file = new ClassPathResource("companies_light.json").getFile();
-    companiesParser.parse(file).subscribe(subscriber);
+    parser.parse(file).subscribe(subscriber);
     subscriber.assertComplete();
     subscriber.assertNoErrors();
     subscriber.assertValueCount(4);
@@ -34,7 +35,7 @@ public class CompaniesJsonParserTests {
   public void it_should_parse_companies_from_heavy_file() throws IOException {
     TestSubscriber<ObjectNode> subscriber = new TestSubscriber<>();
     File file = new ClassPathResource("companies.json").getFile();
-    companiesParser.parse(file).subscribe(subscriber);
+    parser.parse(file).subscribe(subscriber);
     subscriber.assertComplete();
     subscriber.assertNoErrors();
   }

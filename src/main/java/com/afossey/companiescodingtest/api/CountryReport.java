@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest;
+package com.afossey.companiescodingtest.api;
 
 import java.util.ArrayList;
 import java.util.List;
