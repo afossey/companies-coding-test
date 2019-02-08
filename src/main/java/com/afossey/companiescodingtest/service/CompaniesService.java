@@ -33,7 +33,7 @@ public class CompaniesService {
 
   /**
    * Process each company from a file as specified by the coding test
-   * @param file
+   *
    * @param withIpStack enable IpStack call
    */
   public void printReport(File file, Boolean withIpStack) {
@@ -65,12 +65,10 @@ public class CompaniesService {
     String totalMoneyRaisedLitteral = company.get(CompanyFields.TOTAL_MONEY_RAISED.getValue())
         .asText();
     float funding = parseTotalMoneyRaised(totalMoneyRaisedLitteral).orElse(0f);
-    if (report.containsKey(country)) {
-      report.get(country).addFunding(funding);
-    } else {
+    if (!report.containsKey(country)) {
       report.put(country, new CountryReport());
-      report.get(country).addFunding(funding);
     }
+    report.get(country).addFunding(funding);
   }
 
   /**

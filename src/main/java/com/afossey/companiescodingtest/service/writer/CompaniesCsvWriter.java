@@ -104,7 +104,7 @@ public class CompaniesCsvWriter implements FileWriter<ObjectNode> {
   // As discussed by email, we must decide on a CSV columns structure after reading the first company.
   private void initColumnFieldsIfEmpty(ObjectNode node) {
     if (this.columnFields.isEmpty()) {
-      Iterator<String> fieldsIterator = node.fieldNames();
+      final Iterator<String> fieldsIterator = node.fieldNames();
       while (fieldsIterator.hasNext()) {
         this.columnFields.add(fieldsIterator.next());
       }
@@ -115,7 +115,7 @@ public class CompaniesCsvWriter implements FileWriter<ObjectNode> {
 
   // As discussed by email, we log new encountered fields not in the predefined columns structure.
   private void checkForNewEncounteredFields(ObjectNode node) {
-    Iterator<String> fieldsIterator = node.fieldNames();
+    final Iterator<String> fieldsIterator = node.fieldNames();
     while (fieldsIterator.hasNext()) {
       String fieldName = fieldsIterator.next();
       if (!this.encounteredFields.contains(fieldName)) {
