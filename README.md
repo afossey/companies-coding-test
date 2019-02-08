@@ -11,9 +11,11 @@ Put your IpStack API Key in
 
 # Run tests
 
-``./gradlew test``
+``./gradlew test --rerun-tasks``
 
-Before each test the CSV directory is created and/or cleaned.
+It starts a mix of unit and integration tests.
+
+The CSV directory is created or cleaned before each test using the CSV writer.
 
 # Final integration tests
 
