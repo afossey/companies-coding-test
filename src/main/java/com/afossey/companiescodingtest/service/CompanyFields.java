@@ -1,4 +1,4 @@
-package com.afossey.companiescodingtest.api;
+package com.afossey.companiescodingtest.service;
 
 public enum CompanyFields {
   ID("_id"),

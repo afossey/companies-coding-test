@@ -1,7 +1,6 @@
-package com.afossey.companiescodingtest.api;
+package com.afossey.companiescodingtest.service;
 
 public enum LogMessages {
-
   A_COMPANY_MUST_HAVE_A_NAME("A company must have a name. Malformed company node id => {}"),
   INVALID_FIRST_CHAR(
       "A node could not be processed. Valid first chars for name are [{}], character was {}."),

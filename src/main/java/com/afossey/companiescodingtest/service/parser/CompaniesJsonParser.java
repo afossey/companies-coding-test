@@ -1,6 +1,6 @@
 package com.afossey.companiescodingtest.service.parser;
 
-import com.afossey.companiescodingtest.api.FileParser;
+import com.afossey.companiescodingtest.FileParser;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;

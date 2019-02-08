@@ -1,14 +1,12 @@
 package com.afossey.companiescodingtest.service;
 
-import static com.afossey.companiescodingtest.api.LogMessages.CSV_GENERATED;
-import static com.afossey.companiescodingtest.api.LogMessages.REPORT_LOG;
-import static com.afossey.companiescodingtest.api.LogMessages.UNABLE_TO_PARSE_DOMAIN;
-import static com.afossey.companiescodingtest.api.LogMessages.UNABLE_TO_PARSE_FUNDING;
+import static com.afossey.companiescodingtest.service.LogMessages.CSV_GENERATED;
+import static com.afossey.companiescodingtest.service.LogMessages.REPORT_LOG;
+import static com.afossey.companiescodingtest.service.LogMessages.UNABLE_TO_PARSE_DOMAIN;
+import static com.afossey.companiescodingtest.service.LogMessages.UNABLE_TO_PARSE_FUNDING;
 
-import com.afossey.companiescodingtest.api.CompanyFields;
-import com.afossey.companiescodingtest.api.CountryReport;
-import com.afossey.companiescodingtest.api.FileParser;
-import com.afossey.companiescodingtest.api.FileWriter;
+import com.afossey.companiescodingtest.FileParser;
+import com.afossey.companiescodingtest.FileWriter;
 import com.afossey.companiescodingtest.service.ipstack.IpStackClient;
 import com.afossey.companiescodingtest.service.writer.CompaniesCsvWriterProperties;
 import com.fasterxml.jackson.databind.node.ObjectNode;

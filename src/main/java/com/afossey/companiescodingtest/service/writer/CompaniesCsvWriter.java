@@ -1,12 +1,12 @@
 package com.afossey.companiescodingtest.service.writer;
 
-import static com.afossey.companiescodingtest.api.LogMessages.A_COMPANY_MUST_HAVE_A_NAME;
-import static com.afossey.companiescodingtest.api.LogMessages.INVALID_FIRST_CHAR;
-import static com.afossey.companiescodingtest.api.LogMessages.NEW_FIELD_ENCOUNTERED;
+import static com.afossey.companiescodingtest.service.LogMessages.A_COMPANY_MUST_HAVE_A_NAME;
+import static com.afossey.companiescodingtest.service.LogMessages.INVALID_FIRST_CHAR;
+import static com.afossey.companiescodingtest.service.LogMessages.NEW_FIELD_ENCOUNTERED;
 import static java.util.stream.Collectors.joining;
 
-import com.afossey.companiescodingtest.api.CompanyFields;
-import com.afossey.companiescodingtest.api.FileWriter;
+import com.afossey.companiescodingtest.FileWriter;
+import com.afossey.companiescodingtest.service.CompanyFields;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.File;
