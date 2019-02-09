@@ -23,19 +23,30 @@ public class CompaniesServiceTests {
 
   @Test
   public void it_should_complete_the_coding_test_light() throws IOException {
-    File file = new ClassPathResource("companies_light.json").getFile();
+    File file = new ClassPathResource("companies.json").getFile();
+    service.printReport(file, Boolean.TRUE);
+  }
+
+  @Test
+  public void it_should_complete_the_coding_test_medium() throws IOException {
+    File file = new ClassPathResource("companies_medium.json").getFile();
     service.printReport(file, Boolean.TRUE);
   }
 
   /*
-    Ip Stack is disabled by default on the heavy test because of following concerns :
+    Ip Stack is disabled by default on this test because of following concerns :
     - The IpStack API rate limit is 10K hits per month.
-    - IpStack API seems too slow to process all companies. (took 4O mins to process 3.5K companies)
   */
   @Test
   public void it_should_complete_the_coding_test_heavy_without_ip_stack() throws IOException {
     File file = new ClassPathResource("companies.json").getFile();
     service.printReport(file, Boolean.FALSE);
+  }
+
+  @Test
+  public void it_should_complete_the_coding_test_heavy() throws IOException {
+    File file = new ClassPathResource("companies.json").getFile();
+    service.printReport(file, Boolean.TRUE);
   }
 
   @Test

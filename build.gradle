@@ -23,12 +23,10 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'
 	compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
 	compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.6'
-	compile group: 'io.github.openfeign', name: 'feign-core', version: '10.1.0'
-	compile group: 'io.github.openfeign', name: 'feign-jackson', version: '10.1.0'
 	compile 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly "org.springframework.boot:spring-boot-configuration-processor"
