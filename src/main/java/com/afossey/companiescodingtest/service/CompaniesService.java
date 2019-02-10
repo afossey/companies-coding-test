@@ -1,6 +1,8 @@
 package com.afossey.companiescodingtest.service;
 
 import static com.afossey.companiescodingtest.service.LogMessages.CSV_GENERATED;
+import static com.afossey.companiescodingtest.service.LogMessages.IP_STACK_REQUEST;
+import static com.afossey.companiescodingtest.service.LogMessages.IP_STACK_RESPONSE;
 import static com.afossey.companiescodingtest.service.LogMessages.REPORT_LOG;
 import static com.afossey.companiescodingtest.service.LogMessages.UNABLE_TO_PARSE_DOMAIN;
 import static com.afossey.companiescodingtest.service.LogMessages.UNABLE_TO_PARSE_FUNDING;
@@ -42,7 +44,7 @@ public class CompaniesService {
 
     this.parser.parse(file)
         .doOnNext(this.writer::write)
-        .flatMapMaybe(company -> withIpStack ? Maybe.just(company) : Maybe.empty())
+        .takeWhile(__ -> withIpStack)
         .flatMapMaybe(this::callIpStack)
         .doOnNext(pair -> addToReport(report, pair.getCompany(), pair.getCountry()))
         .doFinally(
@@ -65,10 +67,10 @@ public class CompaniesService {
         emitter.onComplete();
         return;
           }
-      log.info("IpStack request.");
+      log.info(IP_STACK_REQUEST.getValue());
       this.client.getCountry(domain.get())
           .doOnNext(res -> {
-            log.info("IpStack response.");
+            log.info(IP_STACK_RESPONSE.getValue());
             if (StringUtils.isNotBlank(res.getCountryName())) {
               emitter.onSuccess(CountryCompanyPair.of(res.getCountryName(), company));
             } else {

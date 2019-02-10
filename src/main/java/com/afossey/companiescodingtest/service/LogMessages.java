@@ -8,7 +8,9 @@ public enum LogMessages {
   CSV_GENERATED("CSVs have been generated in {}."),
   REPORT_LOG("Country : {} -- Number of companies : {} -- Average funding : {}."),
   UNABLE_TO_PARSE_FUNDING("Unable to parse total money raised from {}. e : {}."),
-  UNABLE_TO_PARSE_DOMAIN("Unable to get domain from {}. e : {}.");
+  UNABLE_TO_PARSE_DOMAIN("Unable to get domain from {}. e : {}."),
+  IP_STACK_REQUEST("IpStack request."),
+  IP_STACK_RESPONSE("IpStack response.");
 
   private String value;
 
