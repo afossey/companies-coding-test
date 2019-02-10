@@ -23,7 +23,7 @@ public class CompaniesServiceTests {
 
   @Test
   public void it_should_complete_the_coding_test_light() throws IOException {
-    File file = new ClassPathResource("companies.json").getFile();
+    File file = new ClassPathResource("companies_light.json").getFile();
     service.printReport(file, Boolean.TRUE);
   }
 

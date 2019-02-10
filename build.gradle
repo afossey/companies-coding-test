@@ -22,6 +22,24 @@ repositories {
 	mavenCentral()
 }
 
+task light_test(type: Exec) {
+	commandLine "./gradlew", "test", "--tests", "com.afossey.companiescodingtest.service.CompaniesServiceTests.it_should_complete_the_coding_test_light", "--rerun-tasks", "-i", "--no-daemon"
+}
+
+task medium_test(type: Exec) {
+	commandLine "./gradlew", "test", "--tests", "com.afossey.companiescodingtest.service.CompaniesServiceTests.it_should_complete_the_coding_test_medium", "--rerun-tasks", "-i", "--no-daemon"
+}
+
+task heavy_test_wo_ipstack(type: Exec) {
+	commandLine "./gradlew", "test", "--tests", "com.afossey.companiescodingtest.service.CompaniesServiceTests.it_should_complete_the_coding_test_heavy_without_ip_stack", "--rerun-tasks", "-i", "--no-daemon"
+}
+
+task heavy_test(type: Exec) {
+	commandLine "./gradlew", "test", "--tests", "com.afossey.companiescodingtest.service.CompaniesServiceTests.it_should_complete_the_coding_test_heavy", "--rerun-tasks", "-i", "--no-daemon"
+}
+
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'

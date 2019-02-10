@@ -89,9 +89,9 @@ public class CompaniesService {
   // Add country and company to the addToReport map.
   private void addToReport(SortedMap<String, CountryReport> report, ObjectNode company,
       String country) {
-    String totalMoneyRaisedLitteral = company.get(CompanyFields.TOTAL_MONEY_RAISED.getValue())
+    String totalMoneyRaisedLiteral = company.get(CompanyFields.TOTAL_MONEY_RAISED.getValue())
         .asText();
-    float funding = parseTotalMoneyRaised(totalMoneyRaisedLitteral).orElse(0f);
+    float funding = parseTotalMoneyRaised(totalMoneyRaisedLiteral).orElse(0f);
     if (!report.containsKey(country)) {
       report.put(country, new CountryReport());
     }
