@@ -31,15 +31,13 @@ public class IpStackClientTests {
 
   @Test
   public void it_should_call_ipstack_and_get_country() {
-    IpStackResponse res = this.client.getCountry("google.com").block();
-    assertThat(res).isNotNull();
-    assertThat(res.getCountryName()).isNotEmpty();
+    String country = this.client.getCountry("google.com").blockingGet();
+    assertThat(country).isNotEmpty();
   }
 
   @Test
   public void it_should_fail_on_stale_company_data() {
-    IpStackResponse response = this.client.getCountry("adventnet.com").block();
-    assertThat(response).isNotNull();
-    assertThat(response.getCountryName()).isNull();
+    String country = this.client.getCountry("adventnet.com").blockingGet();
+    assertThat(country).isNull();
   }
 }

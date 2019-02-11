@@ -42,6 +42,7 @@ task heavy_test(type: Exec) {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	compile group: 'io.projectreactor.addons', name: 'reactor-adapter'
 	compile group: 'commons-io', name: 'commons-io', version: '2.6'
 	compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
 	compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.6'

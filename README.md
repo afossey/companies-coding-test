@@ -42,7 +42,7 @@ Generated CSVs are in src/test/generated/ by default.
 
 
 ``
-./gradlew heavy_test
+Remove @Ignore on CompaniesServiceTests#it_should_complete_the_coding_test_heavy and launch "./gradlew heavy_test" 
 `` 
 
 __/!\ It will blow your IpStack API free rate limit and you may be banned for too many simultaneous requests.__

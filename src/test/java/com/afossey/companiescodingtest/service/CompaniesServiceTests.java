@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class CompaniesServiceTests {
   }
 
   @Test
+  @Ignore
   public void it_should_complete_the_coding_test_heavy() throws IOException {
     File file = new ClassPathResource("companies.json").getFile();
     service.printReport(file, Boolean.TRUE);

@@ -56,30 +56,16 @@ public class CompaniesService {
   }
 
   private Maybe<CountryCompanyPair> callIpStack(ObjectNode company) {
-
-    // Encapsulate the non blocking http request from WebClient into a Maybe
-    return Maybe.create(emitter -> {
-
-      String homepage = company.get(CompanyFields.HOMEPAGE_URL.getValue()).asText();
-      Optional<String> domain = getDomainFrom(homepage);
-
-      if (!domain.isPresent()) {
-        emitter.onComplete();
-        return;
-          }
-      log.info(IP_STACK_REQUEST.getValue());
-      this.client.getCountry(domain.get())
-          .doOnNext(res -> {
-            log.info(IP_STACK_RESPONSE.getValue());
-            if (StringUtils.isNotBlank(res.getCountryName())) {
-              emitter.onSuccess(CountryCompanyPair.of(res.getCountryName(), company));
-            } else {
-              emitter.onComplete();
-            }
-          })
-          .subscribe();
-        }
-    );
+    String homepage = company.get(CompanyFields.HOMEPAGE_URL.getValue()).asText();
+    Optional<String> domain = getDomainFrom(homepage);
+    if (domain.isPresent()) {
+      return this.client.getCountry(domain.get())
+          .flatMap(country -> Maybe.just(CountryCompanyPair.of(country, company)))
+          .doOnSubscribe((__) -> log.info(IP_STACK_REQUEST.getValue()))
+          .doOnComplete(() -> log.info(IP_STACK_RESPONSE.getValue()));
+    } else {
+      return Maybe.empty();
+    }
   }
 
   private void logEachCountryReport(SortedMap<String, CountryReport> report) {
@@ -106,23 +92,23 @@ public class CompaniesService {
    *
    * @return {@link Optional} of {@link Float}
    */
-  protected Optional<Float> parseTotalMoneyRaised(String totalMoneyRaisedLitteral) {
+  protected Optional<Float> parseTotalMoneyRaised(String totalMoneyRaisedLiteral) {
     try {
 
-      String valueOnly = totalMoneyRaisedLitteral.replaceAll("[BMKk$€£]", "");
-      if (totalMoneyRaisedLitteral.contains("K") || totalMoneyRaisedLitteral.contains("k")) {
+      String valueOnly = totalMoneyRaisedLiteral.replaceAll("[BMKk$€£]", "");
+      if (totalMoneyRaisedLiteral.contains("K") || totalMoneyRaisedLiteral.contains("k")) {
         return Optional.of(Float.valueOf(valueOnly) * 1000);
       }
-      if (totalMoneyRaisedLitteral.contains("M")) {
+      if (totalMoneyRaisedLiteral.contains("M")) {
         return Optional.of(Float.valueOf(valueOnly) * 1000000);
       }
-      if (totalMoneyRaisedLitteral.contains("B")) {
+      if (totalMoneyRaisedLiteral.contains("B")) {
         return Optional.of(Float.valueOf(valueOnly) * 1000000000);
       }
       return Optional.of(Float.valueOf(valueOnly));
 
     } catch (Exception e) {
-      log.warn(UNABLE_TO_PARSE_FUNDING.getValue(), totalMoneyRaisedLitteral,
+      log.warn(UNABLE_TO_PARSE_FUNDING.getValue(), totalMoneyRaisedLiteral,
           e.getMessage());
       return Optional.empty();
     }
