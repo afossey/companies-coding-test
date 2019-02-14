@@ -2,6 +2,14 @@
 
 - Java 8
 
+# Stack
+
+- Spring Boot
+- Spring WebFlux
+- Reactor Adapter
+- RxJava2
+- Lombok
+
 # Configuration
 
 Put your IpStack API Key in
