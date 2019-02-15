@@ -4,6 +4,7 @@
 
 # Stack
 
+- Gradle
 - Spring Boot
 - Spring WebFlux
 - Reactor Adapter
